@@ -40,7 +40,7 @@ The application is structured as follows:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-repo/country-iso-maui-app.git
+    git clone https://github.com/hernanjls/MauiCountryIso
     ```
 
 2. Restore the necessary NuGet packages:
