@@ -1,0 +1,386 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
+
+		<!-- Note for MacCatalyst:
+		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+
+		<OutputType>Exe</OutputType>
+		<RootNamespace>MauiAppCountryISO</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Display name -->
+		<ApplicationTitle>MauiAppCountryISO</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.mauiappcountryiso</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\ad.png" />
+	  <None Remove="Resources\Images\add1.png" />
+	  <None Remove="Resources\Images\ae.png" />
+	  <None Remove="Resources\Images\af.png" />
+	  <None Remove="Resources\Images\ag.png" />
+	  <None Remove="Resources\Images\ai.png" />
+	  <None Remove="Resources\Images\al.png" />
+	  <None Remove="Resources\Images\am.png" />
+	  <None Remove="Resources\Images\ao.png" />
+	  <None Remove="Resources\Images\aq.png" />
+	  <None Remove="Resources\Images\ar.png" />
+	  <None Remove="Resources\Images\as.png" />
+	  <None Remove="Resources\Images\at.png" />
+	  <None Remove="Resources\Images\au.png" />
+	  <None Remove="Resources\Images\aw.png" />
+	  <None Remove="Resources\Images\ax.png" />
+	  <None Remove="Resources\Images\az.png" />
+	  <None Remove="Resources\Images\ba.png" />
+	  <None Remove="Resources\Images\bb.png" />
+	  <None Remove="Resources\Images\bd.png" />
+	  <None Remove="Resources\Images\be.png" />
+	  <None Remove="Resources\Images\bf.png" />
+	  <None Remove="Resources\Images\bg.png" />
+	  <None Remove="Resources\Images\bh.png" />
+	  <None Remove="Resources\Images\bi.png" />
+	  <None Remove="Resources\Images\bj.png" />
+	  <None Remove="Resources\Images\bl.png" />
+	  <None Remove="Resources\Images\bm.png" />
+	  <None Remove="Resources\Images\bn.png" />
+	  <None Remove="Resources\Images\bo.png" />
+	  <None Remove="Resources\Images\bq.png" />
+	  <None Remove="Resources\Images\br.png" />
+	  <None Remove="Resources\Images\bs.png" />
+	  <None Remove="Resources\Images\bt.png" />
+	  <None Remove="Resources\Images\bv.png" />
+	  <None Remove="Resources\Images\bw.png" />
+	  <None Remove="Resources\Images\by.png" />
+	  <None Remove="Resources\Images\bz.png" />
+	  <None Remove="Resources\Images\ca.png" />
+	  <None Remove="Resources\Images\cc.png" />
+	  <None Remove="Resources\Images\cd.png" />
+	  <None Remove="Resources\Images\cf.png" />
+	  <None Remove="Resources\Images\cg.png" />
+	  <None Remove="Resources\Images\ch.png" />
+	  <None Remove="Resources\Images\ci.png" />
+	  <None Remove="Resources\Images\ck.png" />
+	  <None Remove="Resources\Images\cl.png" />
+	  <None Remove="Resources\Images\cm.png" />
+	  <None Remove="Resources\Images\cn.png" />
+	  <None Remove="Resources\Images\co.png" />
+	  <None Remove="Resources\Images\cr.png" />
+	  <None Remove="Resources\Images\cu.png" />
+	  <None Remove="Resources\Images\CurvedMask.png" />
+	  <None Remove="Resources\Images\cv.png" />
+	  <None Remove="Resources\Images\cw.png" />
+	  <None Remove="Resources\Images\cx.png" />
+	  <None Remove="Resources\Images\cy.png" />
+	  <None Remove="Resources\Images\cz.png" />
+	  <None Remove="Resources\Images\de.png" />
+	  <None Remove="Resources\Images\dj.png" />
+	  <None Remove="Resources\Images\dk.png" />
+	  <None Remove="Resources\Images\dm.png" />
+	  <None Remove="Resources\Images\DriversHeader.png" />
+	  <None Remove="Resources\Images\dz.png" />
+	  <None Remove="Resources\Images\ec.png" />
+	  <None Remove="Resources\Images\ee.png" />
+	  <None Remove="Resources\Images\eg.png" />
+	  <None Remove="Resources\Images\eh.png" />
+	  <None Remove="Resources\Images\er.png" />
+	  <None Remove="Resources\Images\es.png" />
+	  <None Remove="Resources\Images\et.png" />
+	  <None Remove="Resources\Images\eu.png" />
+	  <None Remove="Resources\Images\fi.png" />
+	  <None Remove="Resources\Images\fj.png" />
+	  <None Remove="Resources\Images\fk.png" />
+	  <None Remove="Resources\Images\fm.png" />
+	  <None Remove="Resources\Images\fo.png" />
+	  <None Remove="Resources\Images\fr.png" />
+	  <None Remove="Resources\Images\ga.png" />
+	  <None Remove="Resources\Images\gb.png" />
+	  <None Remove="Resources\Images\gd.png" />
+	  <None Remove="Resources\Images\ge.png" />
+	  <None Remove="Resources\Images\gf.png" />
+	  <None Remove="Resources\Images\gg.png" />
+	  <None Remove="Resources\Images\gh.png" />
+	  <None Remove="Resources\Images\gi.png" />
+	  <None Remove="Resources\Images\gl.png" />
+	  <None Remove="Resources\Images\gm.png" />
+	  <None Remove="Resources\Images\gn.png" />
+	  <None Remove="Resources\Images\gp.png" />
+	  <None Remove="Resources\Images\gq.png" />
+	  <None Remove="Resources\Images\gr.png" />
+	  <None Remove="Resources\Images\gs.png" />
+	  <None Remove="Resources\Images\gt.png" />
+	  <None Remove="Resources\Images\gu.png" />
+	  <None Remove="Resources\Images\gw.png" />
+	  <None Remove="Resources\Images\gy.png" />
+	  <None Remove="Resources\Images\hk.png" />
+	  <None Remove="Resources\Images\hm.png" />
+	  <None Remove="Resources\Images\hn.png" />
+	  <None Remove="Resources\Images\hr.png" />
+	  <None Remove="Resources\Images\ht.png" />
+	  <None Remove="Resources\Images\hu.png" />
+	  <None Remove="Resources\Images\id.png" />
+	  <None Remove="Resources\Images\ie.png" />
+	  <None Remove="Resources\Images\il.png" />
+	  <None Remove="Resources\Images\im.png" />
+	  <None Remove="Resources\Images\in.png" />
+	  <None Remove="Resources\Images\io.png" />
+	  <None Remove="Resources\Images\iq.png" />
+	  <None Remove="Resources\Images\ir.png" />
+	  <None Remove="Resources\Images\is.png" />
+	  <None Remove="Resources\Images\it.png" />
+	  <None Remove="Resources\Images\je.png" />
+	  <None Remove="Resources\Images\jm.png" />
+	  <None Remove="Resources\Images\jo.png" />
+	  <None Remove="Resources\Images\jp.png" />
+	  <None Remove="Resources\Images\ke.png" />
+	  <None Remove="Resources\Images\kg.png" />
+	  <None Remove="Resources\Images\kh.png" />
+	  <None Remove="Resources\Images\ki.png" />
+	  <None Remove="Resources\Images\km.png" />
+	  <None Remove="Resources\Images\kn.png" />
+	  <None Remove="Resources\Images\kp.png" />
+	  <None Remove="Resources\Images\kr.png" />
+	  <None Remove="Resources\Images\kw.png" />
+	  <None Remove="Resources\Images\ky.png" />
+	  <None Remove="Resources\Images\kz.png" />
+	  <None Remove="Resources\Images\la.png" />
+	  <None Remove="Resources\Images\lb.png" />
+	  <None Remove="Resources\Images\lc.png" />
+	  <None Remove="Resources\Images\li.png" />
+	  <None Remove="Resources\Images\lk.png" />
+	  <None Remove="Resources\Images\lr.png" />
+	  <None Remove="Resources\Images\ls.png" />
+	  <None Remove="Resources\Images\lt.png" />
+	  <None Remove="Resources\Images\lu.png" />
+	  <None Remove="Resources\Images\lv.png" />
+	  <None Remove="Resources\Images\ly.png" />
+	  <None Remove="Resources\Images\ma.png" />
+	  <None Remove="Resources\Images\mc.png" />
+	  <None Remove="Resources\Images\md.png" />
+	  <None Remove="Resources\Images\me.png" />
+	  <None Remove="Resources\Images\mf.png" />
+	  <None Remove="Resources\Images\mg.png" />
+	  <None Remove="Resources\Images\mh.png" />
+	  <None Remove="Resources\Images\mk.png" />
+	  <None Remove="Resources\Images\ml.png" />
+	  <None Remove="Resources\Images\mm.png" />
+	  <None Remove="Resources\Images\mn.png" />
+	  <None Remove="Resources\Images\mo.png" />
+	  <None Remove="Resources\Images\mp.png" />
+	  <None Remove="Resources\Images\mq.png" />
+	  <None Remove="Resources\Images\mr.png" />
+	  <None Remove="Resources\Images\ms.png" />
+	  <None Remove="Resources\Images\mt.png" />
+	  <None Remove="Resources\Images\mu.png" />
+	  <None Remove="Resources\Images\mv.png" />
+	  <None Remove="Resources\Images\mw.png" />
+	  <None Remove="Resources\Images\mx.png" />
+	  <None Remove="Resources\Images\my.png" />
+	  <None Remove="Resources\Images\mz.png" />
+	  <None Remove="Resources\Images\na.png" />
+	  <None Remove="Resources\Images\nc.png" />
+	  <None Remove="Resources\Images\ne.png" />
+	  <None Remove="Resources\Images\nf.png" />
+	  <None Remove="Resources\Images\ng.png" />
+	  <None Remove="Resources\Images\ni.png" />
+	  <None Remove="Resources\Images\nl.png" />
+	  <None Remove="Resources\Images\no.png" />
+	  <None Remove="Resources\Images\np.png" />
+	  <None Remove="Resources\Images\nr.png" />
+	  <None Remove="Resources\Images\nu.png" />
+	  <None Remove="Resources\Images\nz.png" />
+	  <None Remove="Resources\Images\om.png" />
+	  <None Remove="Resources\Images\pa.png" />
+	  <None Remove="Resources\Images\pe.png" />
+	  <None Remove="Resources\Images\pf.png" />
+	  <None Remove="Resources\Images\pg.png" />
+	  <None Remove="Resources\Images\ph.png" />
+	  <None Remove="Resources\Images\pk.png" />
+	  <None Remove="Resources\Images\pl.png" />
+	  <None Remove="Resources\Images\pm.png" />
+	  <None Remove="Resources\Images\pn.png" />
+	  <None Remove="Resources\Images\pr.png" />
+	  <None Remove="Resources\Images\ps.png" />
+	  <None Remove="Resources\Images\pt.png" />
+	  <None Remove="Resources\Images\pw.png" />
+	  <None Remove="Resources\Images\py.png" />
+	  <None Remove="Resources\Images\qa.png" />
+	  <None Remove="Resources\Images\re.png" />
+	  <None Remove="Resources\Images\ro.png" />
+	  <None Remove="Resources\Images\rs.png" />
+	  <None Remove="Resources\Images\ru.png" />
+	  <None Remove="Resources\Images\rw.png" />
+	  <None Remove="Resources\Images\sa.png" />
+	  <None Remove="Resources\Images\sb.png" />
+	  <None Remove="Resources\Images\sc.png" />
+	  <None Remove="Resources\Images\sd.png" />
+	  <None Remove="Resources\Images\se.png" />
+	  <None Remove="Resources\Images\sg.png" />
+	  <None Remove="Resources\Images\sh.png" />
+	  <None Remove="Resources\Images\si.png" />
+	  <None Remove="Resources\Images\sj.png" />
+	  <None Remove="Resources\Images\sk.png" />
+	  <None Remove="Resources\Images\sl.png" />
+	  <None Remove="Resources\Images\sm.png" />
+	  <None Remove="Resources\Images\sn.png" />
+	  <None Remove="Resources\Images\so.png" />
+	  <None Remove="Resources\Images\sr.png" />
+	  <None Remove="Resources\Images\ss.png" />
+	  <None Remove="Resources\Images\st.png" />
+	  <None Remove="Resources\Images\sv.png" />
+	  <None Remove="Resources\Images\sx.png" />
+	  <None Remove="Resources\Images\sy.png" />
+	  <None Remove="Resources\Images\sz.png" />
+	  <None Remove="Resources\Images\tc.png" />
+	  <None Remove="Resources\Images\td.png" />
+	  <None Remove="Resources\Images\tf.png" />
+	  <None Remove="Resources\Images\tg.png" />
+	  <None Remove="Resources\Images\th.png" />
+	  <None Remove="Resources\Images\tj.png" />
+	  <None Remove="Resources\Images\tk.png" />
+	  <None Remove="Resources\Images\tl.png" />
+	  <None Remove="Resources\Images\tm.png" />
+	  <None Remove="Resources\Images\tn.png" />
+	  <None Remove="Resources\Images\to.png" />
+	  <None Remove="Resources\Images\tr.png" />
+	  <None Remove="Resources\Images\tt.png" />
+	  <None Remove="Resources\Images\tv.png" />
+	  <None Remove="Resources\Images\tw.png" />
+	  <None Remove="Resources\Images\tz.png" />
+	  <None Remove="Resources\Images\ua.png" />
+	  <None Remove="Resources\Images\ug.png" />
+	  <None Remove="Resources\Images\um.png" />
+	  <None Remove="Resources\Images\us.png" />
+	  <None Remove="Resources\Images\uy.png" />
+	  <None Remove="Resources\Images\uz.png" />
+	  <None Remove="Resources\Images\va.png" />
+	  <None Remove="Resources\Images\vc.png" />
+	  <None Remove="Resources\Images\ve.png" />
+	  <None Remove="Resources\Images\vg.png" />
+	  <None Remove="Resources\Images\vi.png" />
+	  <None Remove="Resources\Images\vn.png" />
+	  <None Remove="Resources\Images\vu.png" />
+	  <None Remove="Resources\Images\wf.png" />
+	  <None Remove="Resources\Images\ws.png" />
+	  <None Remove="Resources\Images\xk.png" />
+	  <None Remove="Resources\Images\ye.png" />
+	  <None Remove="Resources\Images\yt.png" />
+	  <None Remove="Resources\Images\za.png" />
+	  <None Remove="Resources\Images\zm.png" />
+	  <None Remove="Resources\Images\zw.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+
+    <PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Plugin.MediaManager.Forms" Version="1.2.2" />
+    <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
+
+  </ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\CountryEditView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CountryDetailsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\HomeView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\LoginView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SplashScreen.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CountryAddView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SubRegionEditView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SubRegionAddView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\CountryEditView.xaml.cs">
+	    <DependentUpon>CountryEditView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\CountryAddView.xaml.cs">
+	    <DependentUpon>CountryAddView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\SubRegionEditView.xaml.cs">
+	    <DependentUpon>SubRegionEditView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\SubRegionAddView.xaml.cs">
+	    <DependentUpon>SubRegionAddView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Views\CountryDetailsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </None>
+	  <None Update="Views\HomeView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </None>
+	  <None Update="Views\LoginView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </None>
+	  <None Update="Views\SplashScreen.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </None>
+	</ItemGroup>
+
+</Project>

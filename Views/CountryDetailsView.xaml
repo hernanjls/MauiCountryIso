@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppCountryISO.Views.CountryDetailsView"
+             xmlns:model="clr-namespace:MauiAppCountryISO.Models"
+             xmlns:local="clr-namespace:MauiAppCountryISO.Views"
+             Title="Country Details">
+    <ContentPage.Content>
+        <Grid>
+
+            <Grid>
+
+                <!-- Define rows and columns for layout -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Header background -->
+                <Image Source="driversheader.png" Aspect="AspectFill" Grid.Row="0" Grid.ColumnSpan="1"/>
+                <Image Source="curvedmask.png" Aspect="Fill" Grid.Row="0" Grid.ColumnSpan="1" HeightRequest="20" VerticalOptions="End" Margin="0,-1,0,-1"/>
+
+                <!-- Profile Image -->
+                <Image Grid.Row="0" Grid.Column="0" Source="{Binding CountryItem.CountryFlag}" Aspect="AspectFill"
+                     HeightRequest="100" WidthRequest="100" Margin="0,50,0,0" VerticalOptions="End" HorizontalOptions="Center"/>
+
+                <!-- Profile Name -->
+                <StackLayout Grid.Row="1" Margin="0,10,0,0" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                    <Label Text="{Binding CountryItem.Name}" Style="{StaticResource ProfileNameLabel}" />
+                </StackLayout>
+
+                <!-- Social Stats Section -->
+                <Grid Grid.Row="2" Margin="0,20,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Column="0">
+                        <Label Text="{Binding CountryItem.Alpha_2}" Style="{StaticResource StatsNumberLabel}" />
+                        <Label Text="Alpha2Code" Style="{StaticResource StatsCaptionLabel}" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Label Text="{Binding CountryItem.Alpha_3}" Style="{StaticResource StatsNumberLabel}" />
+                        <Label Text="Alpha3Code" Style="{StaticResource StatsCaptionLabel}" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="2">
+                        <Label Text="{Binding CountryItem.Code}" Style="{StaticResource StatsNumberLabel}" />
+                        <Label Text="Code" Style="{StaticResource StatsCaptionLabel}" />
+                    </StackLayout>
+                </Grid>
+
+                <!-- Separator -->
+                <BoxView Grid.Row="3" Margin="20,10,0,0" HeightRequest="1" BackgroundColor="{StaticResource SeperatorColor}"/>
+
+                <CollectionView Grid.Row="4" ItemsSource="{Binding SubRegionsViewModel}" Margin="10,0,10,0">
+
+                    <CollectionView.Header>
+                        <StackLayout Margin="0,0,0,10">
+                            <Label HorizontalOptions="Center" FontSize="Medium" FontAttributes="Bold" Text="Sub Regions"/>
+                            <BoxView BackgroundColor="Gray" HeightRequest="1" Opacity="0.5"/>
+                        </StackLayout>
+                    </CollectionView.Header>
+                    
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="4" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:State">
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems Mode="Reveal">
+                                        <SwipeItem Text="Edit" BackgroundColor="LightBlue" Command="{Binding BindingContext.EditItemCommand, Source={RelativeSource AncestorType={x:Type local:CountryDetailsView}}}" CommandParameter="{Binding .}"/>
+                                        <SwipeItem Text="Delete" BackgroundColor="Red" Command="{Binding BindingContext.DeleteItemCommand, Source={RelativeSource AncestorType={x:Type local:CountryDetailsView}}}" CommandParameter="{Binding .}"/>
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+
+                                <Border
+                                     Padding="15"
+                                     Stroke="LightGray"
+                                     StrokeThickness="1">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="10,10,10,10" />
+                                    </Border.StrokeShape>
+                                   
+                                    <Grid Margin="10,0,10,0" RowSpacing="0" ColumnSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="1"/>
+                                        </Grid.RowDefinitions>
+                                        <StackLayout Grid.Row="0" VerticalOptions="Center">
+                                            <Label Style="{StaticResource CountryNameLabel}" >
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Id: " FontAttributes="Bold" />
+                                                        <Span Text="{Binding Id}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label Style="{StaticResource Alpha3CodeLabel}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Name: " FontAttributes="Bold" />
+                                                        <Span Text="{Binding Name}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                        <BoxView Grid.Row="1" HeightRequest="1" BackgroundColor="{StaticResource SeperatorColor}"/>
+                                    </Grid>
+                                </Border>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </Grid>
+            
+            <!-- Floating Action Button -->
+            <Button x:Name="FloatingActionButton" Text="+" 
+                    Margin="0,0,10,10" VerticalOptions="End" HorizontalOptions="End"
+                    Command="{Binding GoToRegionAddCommand}"
+                    Style="{StaticResource FloatingBtn}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

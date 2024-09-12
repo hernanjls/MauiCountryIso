@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppCountryISO.Views.SubRegionAddView"
+             Title="Add Sub Region">
+    <StackLayout VerticalOptions="Center"
+             Spacing="20"
+             Padding="20">
+
+        <Entry Text="{Binding SelectedItem.Name}"
+           FontSize="24"
+           Placeholder="Name" />
+
+        <Button Text="Add Sub Region"
+            BackgroundColor="DodgerBlue"
+            TextColor="White"
+            FontSize="20"
+            Command="{Binding SendItemCommand}" />
+
+    </StackLayout>
+    
+</ContentPage>

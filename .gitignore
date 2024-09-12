@@ -1,0 +1,27 @@
+# Archivos generados por Visual Studio
+bin/
+obj/
+.vscode/
+.vs/
+.idea/
+*.user
+*.suo
+*.log
+*.tlog
+*.tmp
+*.pdb
+*.cache
+*.csproj.user
+*.sln.docstates
+
+# Directorios para MAUI/Visual Studio
+node_modules/
+packages/
+.vscode/
+
+# Archivo de configuración local de Mac
+.DS_Store
+
+# Entornos virtuales de Python o otros
+venv/
+env/
